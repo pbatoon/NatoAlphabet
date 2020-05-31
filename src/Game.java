@@ -49,6 +49,8 @@ public class Game {
         List<Object> letters = new ArrayList<>();
 
         int i = 0;
+        int score;
+
         while(i <= natoAlphabet.size()) {
             //grab random value from Hashmap
             Object[] natoKeys = natoAlphabet.keySet().toArray();
@@ -65,6 +67,7 @@ public class Game {
 
                 if (natoAlphabet.get(key).equals(answer)) {
                     System.out.println("Correct! " + answer + " is the word for " + key);
+                    score += 10;
                 } else {
                     System.out.println("Incorrect.");
                 }
