@@ -44,30 +44,35 @@ public class Game {
 
         //System.out.println("\nRandom value: " + key + " :: " + natoAlphabet.get(key));
 
+        //Store letters already used
         List<Object> letters = new ArrayList<>();
 
-        int i = 0;
-        int score = 0;
+        int i = 0;              // counter for loop
+        int score = 0;          // score counter
 
         while(i <= natoAlphabet.size()) {
             //grab random value from Hashmap
             Object[] natoKeys = natoAlphabet.keySet().toArray();
             Object key = natoKeys[new Random().nextInt(natoKeys.length)];
 
+            // if letter already used, generate a new key
             if(letters.contains(key)) {
                 key = natoKeys[new Random().nextInt(natoKeys.length)];
             } else {
+                //start timer
                 long start = System.currentTimeMillis();
 
+                //user input
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Enter code word for the letter " + key + " : ");
 
+                // convert input to lower case
                 String answer = (scanner.nextLine()).toLowerCase();
 
+                // stop timer and convert to seconds
                 long finish = System.currentTimeMillis();
                 long timeElapsed = (finish - start) / 1000;
 
-                //System.out.println(timeElapsed);
 
                 if (natoAlphabet.get(key).equals(answer) && timeElapsed < 10) {
                     System.out.println("Correct! " + answer + " is the word for " + key);
@@ -75,7 +80,6 @@ public class Game {
                     System.out.println("Score: " + score);
                 } else if (timeElapsed >= 10) {
                     System.out.println("Too slow!");
-                    i = natoAlphabet.size();
                 } else {
                     System.out.println("Incorrect.");
                 }
