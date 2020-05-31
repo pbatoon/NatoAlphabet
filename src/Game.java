@@ -42,8 +42,6 @@ public class Game {
         }
         */
 
-
-
         //System.out.println("\nRandom value: " + key + " :: " + natoAlphabet.get(key));
 
         List<Object> letters = new ArrayList<>();
@@ -69,14 +67,14 @@ public class Game {
                 long finish = System.currentTimeMillis();
                 long timeElapsed = (finish - start) / 1000;
 
-                System.out.println(timeElapsed);
+                //System.out.println(timeElapsed);
 
                 if (natoAlphabet.get(key).equals(answer) && timeElapsed < 10) {
                     System.out.println("Correct! " + answer + " is the word for " + key);
                     score += 10;
                     System.out.println("Score: " + score);
                 } else if (timeElapsed >= 10) {
-                    System.out.println("Ran out of time!");
+                    System.out.println("Too slow!");
                     i = natoAlphabet.size();
                 } else {
                     System.out.println("Incorrect.");
