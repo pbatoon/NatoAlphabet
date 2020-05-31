@@ -49,7 +49,7 @@ public class Game {
         List<Object> letters = new ArrayList<>();
 
         int i = 0;
-        int score;
+        int score = 0;
 
         while(i <= natoAlphabet.size()) {
             //grab random value from Hashmap
@@ -59,15 +59,25 @@ public class Game {
             if(letters.contains(key)) {
                 key = natoKeys[new Random().nextInt(natoKeys.length)];
             } else {
+                long start = System.currentTimeMillis();
 
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Enter code word for the letter " + key + " : ");
 
                 String answer = (scanner.nextLine()).toLowerCase();
 
-                if (natoAlphabet.get(key).equals(answer)) {
+                long finish = System.currentTimeMillis();
+                long timeElapsed = (finish - start) / 1000;
+
+                System.out.println(timeElapsed);
+
+                if (natoAlphabet.get(key).equals(answer) && timeElapsed < 10) {
                     System.out.println("Correct! " + answer + " is the word for " + key);
                     score += 10;
+                    System.out.println("Score: " + score);
+                } else if (timeElapsed >= 10) {
+                    System.out.println("Ran out of time!");
+                    i = natoAlphabet.size();
                 } else {
                     System.out.println("Incorrect.");
                 }
